@@ -1,0 +1,2 @@
+# HunterSentinelKQL
+Azure Sentinel KQL
