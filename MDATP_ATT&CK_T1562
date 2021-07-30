@@ -1,5 +1,11 @@
 T1562.004 - Disable or Modify System Firewall
 
+
+//Disable Microsoft Defender Firewall
+DeviceProcessEvents
+| where isnotempty(ActionType) and isnotempty(ProcessCommandLine)
+| where ProcessCommandLine has "netsh advfirewall" and ProcessCommandLine has "state off"
+
 //Disable Microsoft Defender Firewall via Registry -Failed -Access denied
 DeviceProcessEvents
 | where isnotempty(ActionType) and isnotempty(ProcessCommandLine)
@@ -18,5 +24,5 @@ DeviceProcessEvents
 //Allow Executable Through Firewall Located in Non-Standard Location -Failed - Local admin rights required
 DeviceProcessEvents
 | where isnotempty(ActionType) and isnotempty(ProcessCommandLine)
-| where ProcessCommandLine has "advfirewall" and ProcessCommandLine has "add" and ProcessCommandLine has "dir" and ProcessCommandLine has "action=allow"
+| where ProcessCommandLine has "advfirewall" and ProcessCommandLine has "add" and ProcessCommandLine has "dir" and ProcessCommandLine has "action=allow" and ProcessCommandLine has "program="
 
