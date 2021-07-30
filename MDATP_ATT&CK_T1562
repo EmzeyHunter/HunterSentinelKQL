@@ -3,8 +3,7 @@ T1562.004 - Disable or Modify System Firewall
 
 //Disable Microsoft Defender Firewall
 DeviceProcessEvents
-| where isnotempty(ActionType) and isnotempty(ProcessCommandLine)
-| where ProcessCommandLine has "netsh advfirewall" and ProcessCommandLine has "state off"
+| where ProcessCommandLine has "advfirewall" and ProcessCommandLine has "state off"
 
 //Disable Microsoft Defender Firewall via Registry -Failed -Access denied
 DeviceProcessEvents
