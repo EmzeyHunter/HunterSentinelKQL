@@ -1,0 +1,17 @@
+Syslog
+| where Computer in ("HOST")
+| where Facility  == "local7"
+| extend User = extract(@'user=¦(\S+)¦',1,SyslogMessage),
+    EventID = extract(@'id=¦(\S+)¦',1,SyslogMessage),
+    EventDate = extract(@'date=¦(\S+)¦',1,SyslogMessage),
+    EventTime = extract(@'time=¦(\S+)¦',1,SyslogMessage),
+    EventSeverity = tostring(extract(@'severity=¦(\S+)¦',1,SyslogMessage)),
+    Node = extract(@'node=¦(\S+)¦',1,SyslogMessage),
+    Source_IP = extract(@'sourceip=¦(\S+)¦',1,SyslogMessage),
+    UserAccount = extract(@'user=¦(\S+)¦',1,SyslogMessage),
+    Realm = extract(@'realm=¦(.*?)¦',1,SyslogMessage),
+    Role = extract(@'role=¦(.*?)¦',1,SyslogMessage),
+    VPNGW_IP = extract(@'locIp=¦(\S+)¦',1,SyslogMessage),
+    Protocol = extract(@'protocol=¦(\S+)¦',1,SyslogMessage),
+    Message = extract(@'msg=¦(.*?)¦',1,SyslogMessage)
+| extend EventOccurance = strcat(EventDate, " ",EventTime)
