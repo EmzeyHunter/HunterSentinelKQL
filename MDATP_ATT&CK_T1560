@@ -1,0 +1,4 @@
+//T1560 - Archive Collected Data - Compress Data for Exfiltration With PowerShell - Success
+DeviceEvents
+| where isnotempty(InitiatingProcessFileName) and isnotempty(InitiatingProcessParentFileName)
+| where AdditionalFields has "compress-archive" and InitiatingProcessFileName in~ ("powershell.exe","cmd.exe")
