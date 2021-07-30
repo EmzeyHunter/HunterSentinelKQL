@@ -1,3 +1,7 @@
+// Version 8.0R7 and above using the WELF format
+
+//Check the exact escape character and change the regex value accordingly ( ¦ )
+
 Syslog
 | where Computer in ("HOST")
 | where Facility  == "local7"
