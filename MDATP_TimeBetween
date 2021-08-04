@@ -1,0 +1,7 @@
+let deviceName = "DEVICE NAME";
+let deviceId = "DEVICE ID";
+DeviceProcessEvents
+| union DeviceNetworkEvents, DeviceFileEvents,DeviceRegistryEvents,DeviceLogonEvents,DeviceImageLoadEvents, DeviceEvents
+| where DeviceName == deviceName or DeviceId == deviceId or RemoteDeviceName == deviceName
+| where Timestamp between ( datetime(2021-08-04, 10:56 AM) .. datetime(2021-08-04, 10:57 AM))
+| sort by Timestamp
